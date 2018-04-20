@@ -1,0 +1,20 @@
+﻿@using BeekClone.Web.Models
+@model List<Libro>
+<br  />
+<div class="row">
+
+    @foreach (var libro in Model)
+    {
+        <div class="col-md-3 text-center" style="margin-bottom: 30px;">
+            <img src="/Content/Libros/@libro.Caratula" height="280" />
+            <h5>@libro.Autor.Nombre</h5>
+            <div class="btn-group">
+                <button type="button" class="btn btn-info">Marcar para Leer</button> 
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+
+</div> 
