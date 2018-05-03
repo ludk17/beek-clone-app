@@ -1,0 +1,14 @@
+﻿<br/>
+<br />
+
+@foreach (var item in Model)
+{
+    <div>
+        <a href="/pagina/detalle?id=@item.Id">@item.Nombre</a>
+        <p>@item.Url</p>
+        <p>
+            @item.Fecha - @item.Descripcion
+        </p>
+    </div>
+}
+

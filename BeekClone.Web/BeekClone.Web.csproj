@@ -79,6 +79,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -198,9 +199,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegistroController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="DataBase\DbEntities.cs" />
     <Compile Include="DataBase\Maps\AutorMap.cs" />
+    <Compile Include="DataBase\Maps\UsuarioLibroMap.cs" />
+    <Compile Include="DataBase\Maps\UsuarioMap.cs" />
     <Compile Include="DataBase\Maps\LibroMap.cs" />
+    <Compile Include="DataBase\Maps\PaginaMap.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,8 +216,12 @@
     <Compile Include="Models\Libro.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Nacionalidad.cs" />
+    <Compile Include="Models\Pagina.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\UsuarioLibro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -282,9 +292,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Pagina\Index.cshtml" />
+    <Content Include="Views\Pagina\Detalle.cshtml" />
+    <Content Include="Views\Registro\Crear.cshtml" />
+    <Content Include="Views\Registro\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

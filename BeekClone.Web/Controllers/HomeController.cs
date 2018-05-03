@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BeekClone.Web.DataBase;
+using BeekClone.Web.ViewModels;
 
 namespace BeekClone.Web.Controllers
 {
@@ -14,9 +15,14 @@ namespace BeekClone.Web.Controllers
         {
 
             var dbEntities = new DbEntities();
-            var libros = dbEntities.Libros.Include("Autor").ToList();
 
-            return View(libros);
+            var viewmodel = new HomeViewModel();
+
+            viewmodel.Libros = dbEntities.Libros.Include("Autor").ToList();
+
+            viewmodel.UsuarioLibros = dbEntities.UsuarioLibros.Where(o => o.UsuarioId == 1).ToList();
+
+            return View(viewmodel);
         }
 
         public ActionResult About()
