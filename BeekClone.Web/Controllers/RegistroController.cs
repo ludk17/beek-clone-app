@@ -6,16 +6,27 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using BeekClone.Web.Validators;
+using BeekClone.Web.Repositorio;
+using BeekClone.Web.Servicios;
 
 namespace BeekClone.Web.Controllers
 {
     public class RegistroController : Controller
     {
-        private DbEntities db; 
+        private DbEntities db;
+
+
+        private UsuarioValidator validator;
+        private UsuarioRepositorio repositorio;
+        private EmailSender email;
 
         public RegistroController()
         {
             db = new DbEntities();
+            validator = new UsuarioValidator(ModelState, db);
+            repositorio = new UsuarioRepositorio();
+            email = new EmailSender();
         }
 
         // GET: Registro
@@ -27,12 +38,12 @@ namespace BeekClone.Web.Controllers
         [HttpPost]
         public ActionResult Crear(Usuario usuario)
         {
-            ValidarUsuario(usuario);
+            validator.EjecutarValiciones(usuario);
 
             if (ModelState.IsValid)
             {
-                db.Usuarios.Add(usuario);
-                db.SaveChanges();
+                repositorio.Guardar(usuario);
+                email.Send(usuario.Correo, "Bienvenido", GetLink());
                 return RedirectToAction("Index", "Home");
             }
 
@@ -40,22 +51,11 @@ namespace BeekClone.Web.Controllers
             
         }
 
-        private void ValidarUsuario(Usuario usuario)
+        private string GetLink()
         {
-
-            if(string.IsNullOrEmpty(usuario.Correo))
-                ModelState.AddModelError("Correo", "El Correo Electrónico es obligatorio");
-
-            if (!Regex.Match(usuario.Correo, @"^[a-zA-Z]+@[a-zA-Z]+[.]{1}[a-zA-Z]{2,3}$").Success)
-                ModelState.AddModelError("Correo", "El Correo Electrónico no tiene un formato válido");
-
-
-            if(db.Usuarios.Where(o => o.Correo == usuario.Correo).Count() > 0)
-                ModelState.AddModelError("Correo", "El Correo Electrónico ya existe");
-
-            if (string.IsNullOrEmpty(usuario.Password))
-                ModelState.AddModelError("Password", "El Password es obligatorio");
+            return "<a href='#'>Haz clic aqui para activar tu cuente</a>";
         }
+        
 
         // GET: Registro
         public ActionResult Editar(int id)
