@@ -14,6 +14,8 @@ namespace BeekClone.Web.DataBase
         public IDbSet<Autor> Autores { get; set; }
         public IDbSet<Usuario> Usuarios { get; set; }
         public IDbSet<UsuarioLibro> UsuarioLibros { get; set; }
+        public IDbSet<Partido> Partidos { get; set; }
+        public IDbSet<Equipo> Equipos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -23,6 +25,8 @@ namespace BeekClone.Web.DataBase
             modelBuilder.Configurations.Add(new AutorMap());
             modelBuilder.Configurations.Add(new UsuarioMap());
             modelBuilder.Configurations.Add(new UsuarioLibroMap());
+            modelBuilder.Configurations.Add(new PartidoMap());
+            modelBuilder.Configurations.Add(new EquipoMap());
         }
     }
 }

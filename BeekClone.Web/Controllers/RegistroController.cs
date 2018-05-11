@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BeekClone.Web.Validators;
 using BeekClone.Web.Repositorio;
 using BeekClone.Web.Servicios;
+using BeekClone.Web.Interfaces;
 
 namespace BeekClone.Web.Controllers
 {
@@ -16,17 +17,21 @@ namespace BeekClone.Web.Controllers
     {
         private DbEntities db;
 
-
         private UsuarioValidator validator;
-        private UsuarioRepositorio repositorio;
+        private IUsuarioRepositorio repositorio;
         private EmailSender email;
 
-        public RegistroController()
+        public RegistroController(IUsuarioRepositorio repositorio)
         {
             db = new DbEntities();
             validator = new UsuarioValidator(ModelState, db);
-            repositorio = new UsuarioRepositorio();
+            this.repositorio = repositorio;
             email = new EmailSender();
+        }
+
+        public ActionResult Listar()
+        {
+            return View();
         }
 
         // GET: Registro

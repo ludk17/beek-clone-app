@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Listar";
+    Layout = null;
+}
+
+
+<h2>Lista de usuarios</h2>
+
+<ul>
+@foreach (var item in Model)
+{
+    <li>@item.Correo</li>
+}
+</ul>
+

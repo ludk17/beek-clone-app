@@ -16,7 +16,7 @@ namespace BeekClone.Web.Servicios
 
             client.Port = 587;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("me52635", "OUhDQS9Tr%S2");
+            client.Credentials = new System.Net.NetworkCredential("me52635@gmail.com", "OUhDQS9Tr%S2");
             client.EnableSsl = true;
             client.Host = "smtp.gmail.com";
 

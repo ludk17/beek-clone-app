@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var item in Model)
+{
+    <h1>@item.EquipoLocal.Nombre <span>vs</span> @item.EquipoVisitante.Nombre </h1>
+}
+
+
+<a href="/partido/index?fecha=2018-05-11">
+    Dia siguiente
+</a>
